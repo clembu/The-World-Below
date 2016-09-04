@@ -1,0 +1,43 @@
+# For Atom Feed
+domain: #todo
+author: #todo
+email: #todo
+title: #todo
+
+# For GitHub Pages
+name: "The World Below"
+description: >
+An adventure log with a wiki to the side.
+markdown: kramdown
+
+# standard jekyll configuration
+
+baseurl: "/The-World-Below/" #check
+
+exclude:
+- Gemfile
+- Gemfile.lock
+- README.md
+
+include:
+  #todo
+
+# Custom site configuration
+permalink: pretty
+
+collections:
+  players:
+    output: true
+  characters:
+    output: true
+  places:
+    output: true
+  #todo
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      title: "The World Below"
