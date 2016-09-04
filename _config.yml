@@ -7,7 +7,7 @@ title: #todo
 # For GitHub Pages
 name: "The World Below"
 description: >
-An adventure log with a wiki to the side.
+  An adventure log with a wiki to the side.
 markdown: kramdown
 
 # standard jekyll configuration
