@@ -2,9 +2,10 @@
 domain: #todo
 author: #todo
 email: #todo
-title: #todo
+title: "The World Below"
 
 # For GitHub Pages
+repository: facelesspanda/The-World-Below
 name: "The World Below"
 description: >
   An adventure log with a wiki to the side.
@@ -12,7 +13,7 @@ markdown: kramdown
 
 # standard jekyll configuration
 
-baseurl: "/The-World-Below/" #check
+#baseurl: "/The-World-Below/" #check
 
 exclude:
 - Gemfile
@@ -41,3 +42,7 @@ defaults:
       type: "pages"
     values:
       title: "The World Below"
+
+#rubygems
+gems:
+  ['jekyll-github-metadata']
