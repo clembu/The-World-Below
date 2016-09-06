@@ -1,9 +1,23 @@
 ---
-layout: default
+layout: blank
 title: The World Below — Landing Page
 ---
 
-<div class="uk-panel uk-text-center uk-panel-box">
-  <h3 class="uk-panel-title">{{ site.title }}</h3>
-  <p>{{ site.description }}</p>
+<header class="header menu-centered">
+  <h1 class="headline">The World Below</h1>
+  <h1 class="subheader">a role playing game</h1>
+  <ul class="header-subnav menu">
+    <li><a href="{{site.github.url}}/read">Chronicles</a></li>
+    <li><a href="{{site.github.url}}/explore">Explore</a></li>
+  </ul>
+</header>
+
+<div class="wrap">
+  <div class="alert callout" data-closable>
+    <h5>Still in construction!</h5>
+    <p>It is likely that there is no actual content on this site. Also I have yet to style it the way I want.</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 </div>

@@ -1,0 +1,109 @@
+---
+layout: blank
+---
+<!--#########################################################################
+██      ██  ██████  ██    ██ ██ ██████
+██      ██ ██    ██ ██    ██ ██ ██   ██
+██      ██ ██    ██ ██    ██ ██ ██   ██
+██      ██ ██ ▄▄ ██ ██    ██ ██ ██   ██
+███████ ██  ██████   ██████  ██ ██████
+               ▀▀
+##########################################################################-->
+<!-- set non-false value to debug, unset the value to not debug ("debug =") -->
+{% assign debug = %}
+
+{% if page.bindto %}
+  {% assign bindproperty = {{page.bindto | prepend: 'item.' | append: ' == ' }} %}
+  {% assign singlequote = "'" %}
+  {% assign bindvalue = page.title | append: singlequote | prepend: singlequote %}
+  {% assign criteria = {{bindproperty | append: bindvalue }} %}
+  {% assign docs = {{site.documents | where: "collection",page.targetcollection | where_exp: "item",criteria}} %}
+{% else %}
+  {% assign docs = {{site.documents | where: "collection",page.targetcollection}} %}
+{% endif %}
+
+<!--#########################################################################
+███    ██  █████  ██    ██
+████   ██ ██   ██ ██    ██
+██ ██  ██ ███████ ██    ██
+██  ██ ██ ██   ██  ██  ██
+██   ████ ██   ██   ████
+##########################################################################-->
+
+<div class="top-bar">
+  <div class="wrap">
+    <div class="top-bar-left">
+      <ul class="horizontal menu" data-magellan>
+        {% for doc in docs %}
+          <!-- Collection item nav link -->
+          <li><a href="#{{doc.title | slugify}}">{{doc.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--#########################################################################
+ ██████  ██████  ███    ██ ████████ ███████ ███    ██ ████████ ███████
+██      ██    ██ ████   ██    ██    ██      ████   ██    ██    ██
+██      ██    ██ ██ ██  ██    ██    █████   ██ ██  ██    ██    ███████
+██      ██    ██ ██  ██ ██    ██    ██      ██  ██ ██    ██         ██
+ ██████  ██████  ██   ████    ██    ███████ ██   ████    ██    ███████
+##########################################################################-->
+
+{% if content %}
+  <div class="wrap">
+    <div class="callout large">
+      <h5>{{page.title}}</h5>
+      {{content}}
+    </div>
+  </div>
+{% endif %}
+
+{% for doc in docs %}
+  <div class="wrap">
+    <!-- Collection item content -->
+    <section class="callout large" id="{{doc.title | slugify}}" data-magellan-target="{{doc.title | slugify}}">
+      <h5><a href="{{doc.url | prepend: site.github.url}}">{{doc.title}}</a></h5>
+      {% if doc.summary %}
+        <p>{{doc.summary}}</p>
+      {% endif %}
+    </section>
+  </div>
+{% else %}
+  <div class="wrap">
+    <!-- Empty collection content -->
+    <div class="callout large">
+      <h5>Nothing to view here</h5>
+      <p>The content you are trying to view doesn't exist. Ask the adming for awesome content!</p>
+    </div>
+  </div>
+{% endfor %}
+
+<!--#########################################################################
+██████  ███████ ██████  ██    ██  ██████
+██   ██ ██      ██   ██ ██    ██ ██
+██   ██ █████   ██████  ██    ██ ██   ███
+██   ██ ██      ██   ██ ██    ██ ██    ██
+██████  ███████ ██████   ██████   ██████
+##########################################################################-->
+{% if debug %}
+<div class="wrap">
+  <div class="callout">
+    <h5>Documents</h5>
+    {% if page.bindto %}
+      <dl>
+        <dt>criterium</dt>
+        <dd>
+          <pre>
+            {{criteria | inspect}}
+          </pre>
+        </dd>
+      </dl>
+    {% endif %}
+    <pre>
+      {{docs | inspect}}
+    </pre>
+  </div>
+</div>
+{% endif %}
